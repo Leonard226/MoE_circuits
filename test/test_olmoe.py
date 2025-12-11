@@ -27,4 +27,8 @@ prompt_maryjohnjohn = "When Mary and John went to the store, John gave a drink t
 prompt_davidmiketom = "When David and Mike went to the store, Tom gave a drink to"
 
 from tools.misc import *
-layer_print(model)
+# layer_print(model)
+# run_template([prompt_maryjohnjohn]*20, model, tokenizer)
+test_data = torch.randn(8,8)
+matrix_drawer(data=test_data, name="test_matrix", output_dir=output_dir, cmap_set="RdBu", title="test_matrix", xlabel="test_x", ylabel="test_y")
+scatter_drawer(data=test_data, name="test_scatter", output_dir=output_dir, title="test_scatter", xlabel="test_x", ylabel="test_y")
