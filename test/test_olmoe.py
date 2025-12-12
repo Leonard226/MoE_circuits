@@ -29,6 +29,9 @@ prompt_davidmiketom = "When David and Mike went to the store, Tom gave a drink t
 from tools.misc import *
 # layer_print(model)
 # run_template([prompt_maryjohnjohn]*20, model, tokenizer)
-test_data = torch.randn(8,8)
-matrix_drawer(data=test_data, name="test_matrix", output_dir=output_dir, cmap_set="RdBu", title="test_matrix", xlabel="test_x", ylabel="test_y")
-scatter_drawer(data=test_data, name="test_scatter", output_dir=output_dir, title="test_scatter", xlabel="test_x", ylabel="test_y")
+# test_data = torch.randn(8,8)
+# matrix_drawer(data=test_data, name="test_matrix", output_dir=output_dir, cmap_set="RdBu", title="test_matrix", xlabel="test_x", ylabel="test_y")
+# scatter_drawer(data=test_data, name="test_scatter", output_dir=output_dir, title="test_scatter", xlabel="test_x", ylabel="test_y")
+# decompose_XA_verbose([prompt_maryjohnjohn], model, tokenizer, router_weight_ls, top_n=top_k, output_dir=output_dir, mode=0) # mode can be 1, 2, 3, 4, 5, 6
+# decompose_XA_single([prompt_maryjohnjohn], model, tokenizer, router_weight_ls)
+G_matrix_analysis(router_weight_ls)
