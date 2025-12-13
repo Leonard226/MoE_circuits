@@ -34,4 +34,14 @@ from tools.misc import *
 # scatter_drawer(data=test_data, name="test_scatter", output_dir=output_dir, title="test_scatter", xlabel="test_x", ylabel="test_y")
 # decompose_XA_verbose([prompt_maryjohnjohn], model, tokenizer, router_weight_ls, top_n=top_k, output_dir=output_dir, mode=0) # mode can be 1, 2, 3, 4, 5, 6
 # decompose_XA_single([prompt_maryjohnjohn], model, tokenizer, router_weight_ls)
-G_matrix_analysis(router_weight_ls)
+# G_matrix_analysis(router_weight_ls)
+
+from tools.verbose import *
+# decompose_TAM_verbose([prompt_maryjohnjohn], model, tokenizer, router_weight_ls, top_n=top_k, output_dir=output_dir)
+decompose_TAM_verbose([prompt_maryjohnjohn], model, tokenizer, router_weight_ls, top_n=n_experts, output_dir=output_dir) ## recommended
+
+from tools.single import *
+# decompose_TAM_single([prompt_maryjohnjohn], model, tokenizer, router_weight_ls, top_n=n_experts)
+
+from tools.batch import *
+# decompose_TAM_batch([prompt_maryjohnjohn]*10, model, tokenizer, router_weight_ls, bsz=100, max_token_per_prompt=14, output_dir=output_dir)
