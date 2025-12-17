@@ -38,10 +38,16 @@ from tools.misc import *
 
 from tools.verbose import *
 # decompose_TAM_verbose([prompt_maryjohnjohn], model, tokenizer, router_weight_ls, top_n=top_k, output_dir=output_dir)
-decompose_TAM_verbose([prompt_maryjohnjohn], model, tokenizer, router_weight_ls, top_n=n_experts, output_dir=output_dir) ## recommended
+# decompose_TAM_verbose([prompt_maryjohnjohn], model, tokenizer, router_weight_ls, top_n=n_experts, output_dir=output_dir) ## recommended
+cache = decompose_H_verbose([prompt_maryjohnjohn], model, tokenizer, router_weight_ls, top_n=top_k, output_dir=output_dir, draw_mode=[1,2,3,4,5,6,7], cached_experts=None)
+# decompose_H_verbose([prompt_davidmiketom], model, tokenizer, router_weight_ls, top_n=top_k, output_dir=output_dir, draw_mode=[1,2,3,4,5,6,7], cached_experts=cache)
 
 from tools.single import *
 # decompose_TAM_single([prompt_maryjohnjohn], model, tokenizer, router_weight_ls, top_n=n_experts)
 
 from tools.batch import *
 # decompose_TAM_batch([prompt_maryjohnjohn]*10, model, tokenizer, router_weight_ls, bsz=100, max_token_per_prompt=14, output_dir=output_dir)
+decompose_H_batch([{"text" : prompt_maryjohnjohn , "S_token_pos" : [3, 9], "END_token_pos" : 13, "IO_token_pos" : 1}] * 10, model, tokenizer, router_weight_ls, top_n=top_k, n_heads=n_heads, bsz=2)
+
+from entropy.entropy import *
+# find_entropy([prompt_maryjohnjohn]*100, model, tokenizer, router_weight_ls, max_token_per_prompt=14, bsz=100)
