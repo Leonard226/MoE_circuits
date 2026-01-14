@@ -26,6 +26,9 @@ router_weight_ls = [model.model.layers[i].mlp.gate.weight for i in range(n_layer
 prompt_maryjohnjohn = "When Mary and John went to the store, John gave a drink to"
 prompt_davidmiketom = "When David and Mike went to the store, Tom gave a drink to"
 
+from dataset.c4_dataset import *
+c4_dataset = c4_dataset_helper(100, 32)
+
 from tools.misc import *
 # layer_print(model)
 # run_template([prompt_maryjohnjohn]*20, model, tokenizer)
@@ -48,11 +51,12 @@ from tools.single import *
 from tools.batch import *
 # decompose_TAM_batch([prompt_maryjohnjohn]*10, model, tokenizer, router_weight_ls, bsz=100, max_token_per_prompt=14, output_dir=output_dir)
 # decompose_H_batch([{"text" : prompt_maryjohnjohn , "S_token_pos" : [3, 9], "END_token_pos" : 13, "IO_token_pos" : 1}] * 10, model, tokenizer, router_weight_ls, top_n=top_k, n_heads=n_heads, bsz=2)
+# decompose_H_comparison_batch([prompt_maryjohnjohn, prompt_davidmiketom], model, tokenizer, router_weight_ls, n_heads, output_dir)
 
-from dataset.c4_dataset import *
+simplified_attn_map_score_batch(c4_dataset, model, tokenizer, router_weight_ls, output_dir, n_heads, bsz=5, max_token_per_prompt=32)
 from entropy.entropy import *
-c4_dataset = c4_dataset_helper(100, 40)
-find_entropy(c4_dataset, model, tokenizer, router_weight_ls, max_token_per_prompt=50, bsz=10)
+
+# find_entropy(c4_dataset, model, tokenizer, router_weight_ls, max_token_per_prompt=50, bsz=10)
 
 # find_entropy([prompt_maryjohnjohn]*10, model, tokenizer, router_weight_ls, max_token_per_prompt=14, bsz=10)
 # find_entropy(["When Mary and John went to the store, Tom gave a drink to"]*10, model, tokenizer, router_weight_ls, max_token_per_prompt=14, bsz=10)
