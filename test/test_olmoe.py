@@ -27,7 +27,7 @@ prompt_maryjohnjohn = "When Mary and John went to the store, John gave a drink t
 prompt_davidmiketom = "When David and Mike went to the store, Tom gave a drink to"
 
 from dataset.c4_dataset import *
-c4_dataset = c4_dataset_helper(100, 32)
+c4_dataset = c4_dataset_helper(dataset_len=100, seed=None, min_words=32)
 
 from tools.misc import *
 # layer_print(model)
@@ -40,7 +40,7 @@ from tools.misc import *
 # G_matrix_analysis(router_weight_ls)
 
 from tools.verbose import *
-# decompose_TAM_verbose([prompt_maryjohnjohn], model, tokenizer, router_weight_ls, top_n=top_k, output_dir=output_dir)
+decompose_TAM_verbose([prompt_maryjohnjohn], model, tokenizer, router_weight_ls, top_n=top_k, output_dir=output_dir)
 # decompose_TAM_verbose([prompt_maryjohnjohn], model, tokenizer, router_weight_ls, top_n=n_experts, output_dir=output_dir) ## recommended
 # cache = decompose_H_verbose([prompt_maryjohnjohn], model, tokenizer, router_weight_ls, top_n=top_k, output_dir=output_dir, draw_mode=[1,2,3,4,5,6,7], cached_experts=None)
 # decompose_H_verbose([prompt_davidmiketom], model, tokenizer, router_weight_ls, top_n=top_k, output_dir=output_dir, draw_mode=[1,2,3,4,5,6,7], cached_experts=cache)
