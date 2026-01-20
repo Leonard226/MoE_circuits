@@ -28,6 +28,7 @@ prompt_davidmiketom = "When David and Mike went to the store, Tom gave a drink t
 
 from dataset.c4_dataset import *
 c4_dataset = c4_dataset_helper(dataset_len=100, seed=None, min_words=32)
+from dataset.ioi_dataset import *
 
 from tools.misc import *
 # layer_print(model)
@@ -40,22 +41,38 @@ from tools.misc import *
 # G_matrix_analysis(router_weight_ls)
 
 from tools.verbose import *
-decompose_TAM_verbose([prompt_maryjohnjohn], model, tokenizer, router_weight_ls, top_n=top_k, output_dir=output_dir)
 # decompose_TAM_verbose([prompt_maryjohnjohn], model, tokenizer, router_weight_ls, top_n=n_experts, output_dir=output_dir) ## recommended
+# decompose_TAM_verbose([prompt_maryjohnjohn], model, tokenizer, router_weight_ls, top_n=top_k, output_dir=output_dir)
 # cache = decompose_H_verbose([prompt_maryjohnjohn], model, tokenizer, router_weight_ls, top_n=top_k, output_dir=output_dir, draw_mode=[1,2,3,4,5,6,7], cached_experts=None)
 # decompose_H_verbose([prompt_davidmiketom], model, tokenizer, router_weight_ls, top_n=top_k, output_dir=output_dir, draw_mode=[1,2,3,4,5,6,7], cached_experts=cache)
 # decompose_M_verbose([prompt_maryjohnjohn], model, tokenizer, router_weight_ls, top_k, output_dir)
 # attn_weights_verbose([prompt_maryjohnjohn], model, tokenizer, output_dir)
 # attn_weights_comparison_verbose([prompt_maryjohnjohn, prompt_davidmiketom], model, tokenizer, output_dir)
-attn_weights_score_comparison_verbose([prompt_maryjohnjohn], model, tokenizer, router_weight_ls, top_k, output_dir)
+# attn_weights_score_comparison_verbose([prompt_maryjohnjohn], model, tokenizer, router_weight_ls, top_k, output_dir)
+
 from tools.single import *
 # decompose_TAM_single([prompt_maryjohnjohn], model, tokenizer, router_weight_ls, top_n=n_experts)
+decompose_H_single([prompt_maryjohnjohn], model, tokenizer, router_weight_ls, top_n=n_experts)
 
 from tools.batch import *
 # decompose_TAM_batch([prompt_maryjohnjohn]*10, model, tokenizer, router_weight_ls, bsz=100, max_token_per_prompt=14, output_dir=output_dir)
 # decompose_H_batch([{"text" : prompt_maryjohnjohn , "S_token_pos" : [3, 9], "END_token_pos" : 13, "IO_token_pos" : 1}] * 10, model, tokenizer, router_weight_ls, top_n=top_k, n_heads=n_heads, bsz=2)
 # decompose_H_comparison_batch([prompt_maryjohnjohn, prompt_davidmiketom], model, tokenizer, router_weight_ls, n_heads, output_dir)
 # simplified_attn_map_score_batch(c4_dataset, model, tokenizer, router_weight_ls, output_dir, n_heads, bsz=5, max_token_per_prompt=32)
+
+from tools.analyze import *
+
+# random sample
+prompt_dict_ls_ORIG = gen_ioi_prompt(20, tokenizer, "mixed", {"[PLACE]": PLACES, "[OBJECT]": OBJECTS}, NAMES, ABCD_TEMPLATES, None)
+prompt_dict_ls_NEW = gen_abc_prompt(tokenizer, ABCD_TEMPLATES, prompt_dict_ls_ORIG)
+send_info = {"token_pos_ls":[ i["END_token_pos"] for i in prompt_dict_ls_ORIG ]}
+recv_info = {"type":"l","token_pos_ls":[ i["END_token_pos"] for i in prompt_dict_ls_ORIG ]}
+# send_info = {"token_pos_ls": [ i["END_token_pos"] for i in prompt_dict_ls_ORIG ]}
+# recv_info = {"type": "qkv", "token_pos_ls": [ i["END_token_pos"] for i in prompt_dict_ls_ORIG ], "head_pos": [(13, 1), (13, 2), (13, 5), (13, 8), (13, 10), (13, 11)]}
+
+path_patching(prompt_dict_ls_ORIG, prompt_dict_ls_NEW, model, tokenizer, send_info, recv_info, output_dir, n_layers, n_heads, bsz=20, demo_now=False)
+
+
 from entropy.entropy import *
 
 # find_entropy(c4_dataset, model, tokenizer, router_weight_ls, max_token_per_prompt=50, bsz=10)
