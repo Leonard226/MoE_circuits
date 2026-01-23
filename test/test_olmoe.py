@@ -27,7 +27,7 @@ prompt_maryjohnjohn = "When Mary and John went to the store, John gave a drink t
 prompt_davidmiketom = "When David and Mike went to the store, Tom gave a drink to"
 
 from dataset.c4_dataset import *
-c4_dataset = c4_dataset_helper(dataset_len=100, seed=None, min_words=32)
+c4_dataset = c4_dataset_helper(dataset_len=1000, seed=None, min_words=32)
 from dataset.ioi_dataset import *
 
 from tools.misc import *
@@ -70,8 +70,8 @@ recv_info = {"type":"l","token_pos_ls":[ i["END_token_pos"] for i in prompt_dict
 # send_info = {"token_pos_ls": [ i["END_token_pos"] for i in prompt_dict_ls_ORIG ]}
 # recv_info = {"type": "qkv", "token_pos_ls": [ i["END_token_pos"] for i in prompt_dict_ls_ORIG ], "head_pos": [(13, 1), (13, 2), (13, 5), (13, 8), (13, 10), (13, 11)]}
 
-path_patching(prompt_dict_ls_ORIG, prompt_dict_ls_NEW, model, tokenizer, send_info, recv_info, output_dir, n_layers, n_heads, bsz=20, demo_now=False)
-
+# path_patching(prompt_dict_ls_ORIG, prompt_dict_ls_NEW, model, tokenizer, send_info, recv_info, output_dir, n_layers, n_heads, bsz=20, demo_now=False)
+pos_tagging(c4_dataset, tokenizer, max_token_per_prompt=32, dataset_sz=-1)
 
 from entropy.entropy import *
 
