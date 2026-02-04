@@ -39,7 +39,9 @@ from tools.misc import *
 # decompose_XA_verbose([prompt_maryjohnjohn], model, tokenizer, router_weight_ls, top_n=top_k, output_dir=output_dir, mode=0) # mode can be 1, 2, 3, 4, 5, 6
 # decompose_XA_single([prompt_maryjohnjohn], model, tokenizer, router_weight_ls)
 # G_matrix_analysis(router_weight_ls)
-
+check_expert_output([prompt_maryjohnjohn], model, tokenizer, router_weight_ls)
+check_head_output([prompt_maryjohnjohn], model, tokenizer)
+exit()
 from tools.verbose import *
 # decompose_TAM_verbose([prompt_maryjohnjohn], model, tokenizer, router_weight_ls, top_n=n_experts, output_dir=output_dir) ## recommended
 # decompose_TAM_verbose([prompt_maryjohnjohn], model, tokenizer, router_weight_ls, top_n=top_k, output_dir=output_dir)
