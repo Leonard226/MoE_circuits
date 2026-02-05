@@ -27,7 +27,7 @@ prompt_maryjohnjohn = "When Mary and John went to the store, John gave a drink t
 prompt_davidmiketom = "When David and Mike went to the store, Tom gave a drink to"
 
 from dataset.c4_dataset import *
-c4_dataset = c4_dataset_helper(dataset_len=1000, seed=None, min_words=32)
+c4_dataset = c4_dataset_helper(dataset_len=100, seed=None, min_words=32)
 from dataset.ioi_dataset import *
 
 from tools.misc import *
@@ -39,9 +39,9 @@ from tools.misc import *
 # decompose_XA_verbose([prompt_maryjohnjohn], model, tokenizer, router_weight_ls, top_n=top_k, output_dir=output_dir, mode=0) # mode can be 1, 2, 3, 4, 5, 6
 # decompose_XA_single([prompt_maryjohnjohn], model, tokenizer, router_weight_ls)
 # G_matrix_analysis(router_weight_ls)
-check_expert_output([prompt_maryjohnjohn], model, tokenizer, router_weight_ls)
-check_head_output([prompt_maryjohnjohn], model, tokenizer)
-exit()
+# check_expert_output([prompt_maryjohnjohn], model, tokenizer, router_weight_ls)
+# check_head_output([prompt_maryjohnjohn], model, tokenizer)
+
 from tools.verbose import *
 # decompose_TAM_verbose([prompt_maryjohnjohn], model, tokenizer, router_weight_ls, top_n=n_experts, output_dir=output_dir) ## recommended
 # decompose_TAM_verbose([prompt_maryjohnjohn], model, tokenizer, router_weight_ls, top_n=top_k, output_dir=output_dir)
@@ -54,7 +54,7 @@ from tools.verbose import *
 
 from tools.single import *
 # decompose_TAM_single([prompt_maryjohnjohn], model, tokenizer, router_weight_ls, top_n=n_experts)
-decompose_H_single([prompt_maryjohnjohn], model, tokenizer, router_weight_ls, top_n=n_experts)
+# decompose_H_single([prompt_maryjohnjohn], model, tokenizer, router_weight_ls, top_n=n_experts)
 
 from tools.batch import *
 # decompose_TAM_batch([prompt_maryjohnjohn]*10, model, tokenizer, router_weight_ls, bsz=100, max_token_per_prompt=14, output_dir=output_dir)
@@ -73,8 +73,25 @@ recv_info = {"type":"l","token_pos_ls":[ i["END_token_pos"] for i in prompt_dict
 # recv_info = {"type": "qkv", "token_pos_ls": [ i["END_token_pos"] for i in prompt_dict_ls_ORIG ], "head_pos": [(13, 1), (13, 2), (13, 5), (13, 8), (13, 10), (13, 11)]}
 
 # path_patching(prompt_dict_ls_ORIG, prompt_dict_ls_NEW, model, tokenizer, send_info, recv_info, output_dir, n_layers, n_heads, bsz=20, demo_now=False)
-pos_tagging(c4_dataset, tokenizer, max_token_per_prompt=32, dataset_sz=-1)
+# batch_token, token_pos_ls = pos_tagging(c4_dataset, tokenizer, max_token_per_prompt=32, dataset_sz=-1)
+decompose_token_tsne(c4_dataset, model, tokenizer, router_weight_ls, output_dir, bsz=50, max_token_per_prompt=32, dataset_sz=100, demo_now=False)
 
+## OBSOLETE, just for check if this is consistent with implementation in v7
+# batch_token_old, token_pos_ls_old = pos_tagging_old(c4_dataset, tokenizer, max_token_per_prompt=32, dataset_sz=-1)
+# print(batch_token["input_ids"][0])
+# print(token_pos_ls[0])
+# print(batch_token_old["input_ids"][0])
+# print(token_pos_ls_old[0])
+# for i in range(1000):
+#     if not torch.allclose(batch_token["input_ids"][i], batch_token_old["input_ids"][i]):
+#         print(i)
+#     if not torch.allclose(batch_token["attention_mask"][i], batch_token_old["attention_mask"][i]):
+#         print("attnmask", i)
+#     for id, val in enumerate(token_pos_ls):
+#         if val != token_pos_ls_old[id]:
+#             print("token_pos", i)
+
+exit()
 from entropy.entropy import *
 
 # find_entropy(c4_dataset, model, tokenizer, router_weight_ls, max_token_per_prompt=50, bsz=10)
