@@ -76,7 +76,7 @@ recv_info = {"type":"l","token_pos_ls":[ i["END_token_pos"] for i in prompt_dict
 # batch_token, token_pos_ls = pos_tagging(c4_dataset, tokenizer, max_token_per_prompt=32, dataset_sz=-1)
 decompose_token_tsne(c4_dataset, model, tokenizer, router_weight_ls, output_dir, bsz=50, max_token_per_prompt=32, dataset_sz=100, demo_now=False)
 
-## OBSOLETE, just for check if this is consistent with implementation in v7
+## NOTE:OBSOLETE, just for check if function "pos_tagging" is consistent with implementation in v7
 # batch_token_old, token_pos_ls_old = pos_tagging_old(c4_dataset, tokenizer, max_token_per_prompt=32, dataset_sz=-1)
 # print(batch_token["input_ids"][0])
 # print(token_pos_ls[0])
