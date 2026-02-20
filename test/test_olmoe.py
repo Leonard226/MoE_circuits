@@ -74,7 +74,7 @@ recv_info = {"type":"l","token_pos_ls":[ i["END_token_pos"] for i in prompt_dict
 
 # path_patching(prompt_dict_ls_ORIG, prompt_dict_ls_NEW, model, tokenizer, send_info, recv_info, output_dir, n_layers, n_heads, bsz=20, demo_now=False)
 # batch_token, token_pos_ls = pos_tagging(c4_dataset, tokenizer, max_token_per_prompt=32, dataset_sz=-1)
-decompose_token_tsne(c4_dataset, model, tokenizer, router_weight_ls, output_dir, bsz=50, max_token_per_prompt=32, dataset_sz=100, demo_now=False)
+# decompose_token_tsne(c4_dataset, model, tokenizer, router_weight_ls, output_dir, bsz=50, max_token_per_prompt=32, dataset_sz=100, demo_now=False)
 
 ## NOTE:OBSOLETE, just for check if function "pos_tagging" is consistent with implementation in v7
 # batch_token_old, token_pos_ls_old = pos_tagging_old(c4_dataset, tokenizer, max_token_per_prompt=32, dataset_sz=-1)
@@ -90,7 +90,7 @@ decompose_token_tsne(c4_dataset, model, tokenizer, router_weight_ls, output_dir,
 #     for id, val in enumerate(token_pos_ls):
 #         if val != token_pos_ls_old[id]:
 #             print("token_pos", i)
-
+decompose_TAM_tril(c4_dataset, model, tokenizer, router_weight_ls, output_dir, top_n=n_experts, bsz=50, max_token_per_prompt=32, demo_now=False)
 exit()
 from entropy.entropy import *
 
