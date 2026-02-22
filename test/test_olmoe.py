@@ -91,7 +91,8 @@ recv_info = {"type":"l","token_pos_ls":[ i["END_token_pos"] for i in prompt_dict
 #         if val != token_pos_ls_old[id]:
 #             print("token_pos", i)
 # decompose_TAM_tril(c4_dataset, model, tokenizer, router_weight_ls, output_dir, top_n=n_experts, bsz=50, max_token_per_prompt=32, demo_now=False)
-decompose_IOI_map_score(prompt_dict_ls_ORIG, prompt_dict_ls_NEW, model, tokenizer, router_weight_ls, output_dir, n_heads, n_experts, bsz=10)
+# decompose_IOI_map_score(prompt_dict_ls_ORIG, prompt_dict_ls_NEW, model, tokenizer, router_weight_ls, output_dir, n_heads, n_experts, bsz=10)
+decompose_H_agnostic(c4_dataset, model, tokenizer, router_weight_ls, output_dir, n_heads, top_n=n_experts, bsz=10, max_token_per_prompt=32, demo_now=False)
 exit()
 from entropy.entropy import *
 
