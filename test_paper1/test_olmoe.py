@@ -6,6 +6,7 @@ import yaml
 with open("./config.yaml", "r") as f:
     data = yaml.safe_load(f)
 output_dir = data["result_path"] + "test_olmoe/test/"
+# output_dir = data["result_path"] + "test_olmoe/test_step10000-tokens41B/" # temporary change
 if not os.path.exists(output_dir):
     os.makedirs(output_dir)
 torch.set_default_device("cuda:0") # or "cpu"
@@ -20,6 +21,7 @@ top_k = 8
 ####-------- Model loading --------####
 from customized_models.modeling_olmoe_customized import OlmoeForCausalLM
 model = OlmoeForCausalLM.from_pretrained(model_id, attn_implementation="eager")
+# model = OlmoeForCausalLM.from_pretrained("allenai/OLMoE-1B-7B-0924", revision='step10000-tokens41B', attn_implementation="eager") # temporary change
 tokenizer = AutoTokenizer.from_pretrained(model_id)
 router_weight_ls = [model.model.layers[i].mlp.gate.weight for i in range(n_layers)]
 ####-------- Prompt settings --------####
@@ -27,7 +29,7 @@ prompt_maryjohnjohn = "When Mary and John went to the store, John gave a drink t
 prompt_davidmiketom = "When David and Mike went to the store, Tom gave a drink to"
 
 from dataset.c4_dataset import *
-c4_dataset = c4_dataset_helper(dataset_len=100, seed=None, min_words=32)
+c4_dataset = c4_dataset_helper(dataset_len=1000, seed=None, min_words=32)
 from dataset.ioi_dataset import *
 
 from tools.misc import *
@@ -90,11 +92,12 @@ recv_info = {"type":"l","token_pos_ls":[ i["END_token_pos"] for i in prompt_dict
 #     for id, val in enumerate(token_pos_ls):
 #         if val != token_pos_ls_old[id]:
 #             print("token_pos", i)
-# decompose_TAM_tril(c4_dataset, model, tokenizer, router_weight_ls, output_dir, top_n=n_experts, bsz=50, max_token_per_prompt=32, demo_now=False)
+decompose_TAM_tril(c4_dataset, model, tokenizer, router_weight_ls, output_dir, top_n=n_experts, bsz=50, max_token_per_prompt=32, demo_now=False)
+exit()
 # decompose_IOI_map_score(prompt_dict_ls_ORIG, prompt_dict_ls_NEW, model, tokenizer, router_weight_ls, output_dir, n_heads, n_experts, bsz=10)
 # decompose_H_agnostic(c4_dataset, model, tokenizer, router_weight_ls, output_dir, n_heads, top_n=n_experts, bsz=10, max_token_per_prompt=32, demo_now=False)
 # decompose_E(c4_dataset, model, tokenizer, router_weight_ls, output_dir, top_k, bsz=10, max_token_per_prompt=32, model_id=model_id)
-AARV_expert_olmoe(c4_dataset, model, tokenizer, router_weight_ls, output_dir, top_k, bsz=10, max_token_per_prompt=32, model_id=model_id, demo_now=False)
+# AARV_expert_olmoe(c4_dataset, model, tokenizer, router_weight_ls, output_dir, top_k, bsz=10, max_token_per_prompt=32, model_id=model_id, demo_now=False)
 
 from entropy.entropy import *
 
