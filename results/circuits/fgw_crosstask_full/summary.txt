@@ -1,0 +1,44 @@
+=== Cross-task FGW summary ===
+  8 models × 3 tasks, alpha=0.0, n_init=5, drop_class=True
+
+=== Per-model WM (within-model cross-task mean) ===
+  mixtral-8x7b            WM=0.9449  [c4↔math=0.957  c4↔code=0.920  math↔code=0.958]
+  mixtral-8x22b           WM=0.9674  [c4↔math=0.980  c4↔code=0.949  math↔code=0.974]
+  deepseek-v2-lite        WM=0.8098  [c4↔math=0.727  c4↔code=0.737  math↔code=0.965]
+  deepseek-v2             WM=0.9738  [c4↔math=0.966  c4↔code=0.970  math↔code=0.986]
+  qwen3-30b-a3b           WM=0.7752  [c4↔math=0.747  c4↔code=0.687  math↔code=0.891]
+  qwen3-235b-a22b         WM=0.9697  [c4↔math=0.945  c4↔code=0.978  math↔code=0.986]
+  olmoe                   WM=0.5480  [c4↔math=0.589  c4↔code=0.292  math↔code=0.763]
+  phi-3.5-moe             WM=0.6899  [c4↔math=0.632  c4↔code=0.584  math↔code=0.854]
+
+=== Per-task CMS (cross-model same-task mean) ===
+  c4      CMS=0.6943  min=0.2155  max=0.9709
+  math    CMS=0.5905  min=0.0589  max=0.9676
+  code    CMS=0.5732  min=0.0779  max=0.9835
+
+=== Per-model task-adaptiveness  (WM - mean CMS-with-others) ===
+  Model                        WM   CMS-others    WM-CMS  label
+  mixtral-8x7b             0.9449       0.4670   +0.4780  [task-invariant]
+  mixtral-8x22b            0.9674       0.5318   +0.4356  [task-invariant]
+  deepseek-v2-lite         0.8098       0.7322   +0.0776  [task-invariant]
+  deepseek-v2              0.9738       0.7596   +0.2142  [task-invariant]
+  qwen3-30b-a3b            0.7752       0.5447   +0.2305  [task-invariant]
+  qwen3-235b-a22b          0.9697       0.6020   +0.3678  [task-invariant]
+  olmoe                    0.5480       0.6472   -0.0992  [task-adaptive]
+  phi-3.5-moe              0.6899       0.6702   +0.0197  [borderline]
+
+=== Global CMS vs CMD ===
+  CMS mean (n= 84): 0.6193
+  CMD mean (n=168): 0.5767
+  CMS - CMD = +0.0427
+
+=== Within-family same-task ===
+  Mixtral 7B/22B      S(mixtral-8x7b/c4, mixtral-8x22b/c4) = 0.9380
+  Mixtral 7B/22B      S(mixtral-8x7b/math, mixtral-8x22b/math) = 0.9184
+  Mixtral 7B/22B      S(mixtral-8x7b/code, mixtral-8x22b/code) = 0.9205
+  DSL/DSv2            S(deepseek-v2-lite/c4, deepseek-v2/c4) = 0.8907
+  DSL/DSv2            S(deepseek-v2-lite/math, deepseek-v2/math) = 0.8230
+  DSL/DSv2            S(deepseek-v2-lite/code, deepseek-v2/code) = 0.8570
+  Qwen 30B/235B       S(qwen3-30b-a3b/c4, qwen3-235b-a22b/c4) = 0.9709
+  Qwen 30B/235B       S(qwen3-30b-a3b/math, qwen3-235b-a22b/math) = 0.9594
+  Qwen 30B/235B       S(qwen3-30b-a3b/code, qwen3-235b-a22b/code) = 0.9835
