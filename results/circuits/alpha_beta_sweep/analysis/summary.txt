@@ -1,0 +1,296 @@
+=== α × Q Quantile FGW Sweep Analysis ===
+S.shape = (64, 64, 3, 3)   models = 8, tasks = 8, |TUPLES| = 64, α = [0.0, 0.5, 1.0], Q = [0.9, 0.99, 0.999], β = 0.5 (fixed)
+Coverage: 1966/2016 unordered cross-pairs (97.5%)
+
+--- α = 0.0, Q = 0.9   (pure feature) ---
+  Within-family same-task  (n= 24): mean = 0.8655, median = 0.8715, min = 0.7543, max = 0.9422
+  Cross-family same-task  (n=196): mean = 0.4850, median = 0.4947, min = 0.0083, max = 0.8817
+  Within-family − cross-family same-task gap: +0.3806
+
+  Global CMS (n=220) = 0.5265
+  Global CMD (n=1542) = 0.4873
+  CMS − CMD                       = +0.0392
+
+  Per-task CMS:
+    c4            CMS = 0.6212  (n = 28)
+    math          CMS = 0.5209  (n = 28)
+    code          CMS = 0.4794  (n = 27)
+    wikitext2     CMS = 0.5652  (n = 27)
+    gsm8k         CMS = 0.5043  (n = 27)
+    humaneval     CMS = 0.4218  (n = 27)
+    pile-arxiv    CMS = 0.5624  (n = 28)
+    pile-github   CMS = 0.5318  (n = 28)
+
+  Per-model WM (within-model cross-task):
+    mixtral-8x7b            WM = 0.8148  (n = 28)
+    mixtral-8x22b           WM = 0.8561  (n = 28)
+    deepseek-v2-lite        WM = 0.7778  (n = 28)
+    deepseek-v2             WM = 0.9099  (n = 10)
+    qwen3-30b-a3b           WM = 0.7031  (n = 28)
+    qwen3-235b-a22b         WM = 0.9100  (n = 28)
+    olmoe                   WM = 0.6098  (n = 26)
+    phi-3.5-moe             WM = 0.6840  (n = 28)
+
+--- α = 0.0, Q = 0.99   (pure feature) ---
+  Within-family same-task  (n= 24): mean = 0.8577, median = 0.8578, min = 0.7294, max = 0.9418
+  Cross-family same-task  (n=196): mean = 0.4692, median = 0.4813, min = 0.0059, max = 0.8776
+  Within-family − cross-family same-task gap: +0.3886
+
+  Global CMS (n=220) = 0.5115
+  Global CMD (n=1542) = 0.4689
+  CMS − CMD                       = +0.0427
+
+  Per-task CMS:
+    c4            CMS = 0.6237  (n = 28)
+    math          CMS = 0.5144  (n = 28)
+    code          CMS = 0.4539  (n = 27)
+    wikitext2     CMS = 0.5551  (n = 27)
+    gsm8k         CMS = 0.4932  (n = 27)
+    humaneval     CMS = 0.3860  (n = 27)
+    pile-arxiv    CMS = 0.5505  (n = 28)
+    pile-github   CMS = 0.5099  (n = 28)
+
+  Per-model WM (within-model cross-task):
+    mixtral-8x7b            WM = 0.7895  (n = 28)
+    mixtral-8x22b           WM = 0.8396  (n = 28)
+    deepseek-v2-lite        WM = 0.7650  (n = 28)
+    deepseek-v2             WM = 0.9006  (n = 10)
+    qwen3-30b-a3b           WM = 0.6841  (n = 28)
+    qwen3-235b-a22b         WM = 0.9281  (n = 28)
+    olmoe                   WM = 0.5730  (n = 26)
+    phi-3.5-moe             WM = 0.6497  (n = 28)
+
+--- α = 0.0, Q = 0.999   (pure feature) ---
+  Within-family same-task  (n= 24): mean = 0.7197, median = 0.7190, min = 0.4777, max = 0.9085
+  Cross-family same-task  (n=196): mean = 0.2716, median = 0.2335, min = 0.0001, max = 0.7648
+  Within-family − cross-family same-task gap: +0.4481
+
+  Global CMS (n=220) = 0.3205
+  Global CMD (n=1542) = 0.2835
+  CMS − CMD                       = +0.0370
+
+  Per-task CMS:
+    c4            CMS = 0.4881  (n = 28)
+    math          CMS = 0.3103  (n = 28)
+    code          CMS = 0.2767  (n = 27)
+    wikitext2     CMS = 0.3662  (n = 27)
+    gsm8k         CMS = 0.3230  (n = 27)
+    humaneval     CMS = 0.1711  (n = 27)
+    pile-arxiv    CMS = 0.3132  (n = 28)
+    pile-github   CMS = 0.3101  (n = 28)
+
+  Per-model WM (within-model cross-task):
+    mixtral-8x7b            WM = 0.5995  (n = 28)
+    mixtral-8x22b           WM = 0.6450  (n = 28)
+    deepseek-v2-lite        WM = 0.6344  (n = 28)
+    deepseek-v2             WM = 0.7168  (n = 10)
+    qwen3-30b-a3b           WM = 0.5940  (n = 28)
+    qwen3-235b-a22b         WM = 0.6042  (n = 28)
+    olmoe                   WM = 0.4026  (n = 26)
+    phi-3.5-moe             WM = 0.5895  (n = 28)
+
+--- α = 0.5, Q = 0.9   (balanced) ---
+  Within-family same-task  (n= 24): mean = 0.9159, median = 0.9177, min = 0.8500, max = 0.9575
+  Cross-family same-task  (n=196): mean = 0.6507, median = 0.6917, min = 0.0890, max = 0.9224
+  Within-family − cross-family same-task gap: +0.2652
+
+  Global CMS (n=220) = 0.6797
+  Global CMD (n=1542) = 0.6486
+  CMS − CMD                       = +0.0310
+
+  Per-task CMS:
+    c4            CMS = 0.7604  (n = 28)
+    math          CMS = 0.6799  (n = 28)
+    code          CMS = 0.6494  (n = 27)
+    wikitext2     CMS = 0.7180  (n = 27)
+    gsm8k         CMS = 0.6494  (n = 27)
+    humaneval     CMS = 0.5760  (n = 27)
+    pile-arxiv    CMS = 0.7091  (n = 28)
+    pile-github   CMS = 0.6906  (n = 28)
+
+  Per-model WM (within-model cross-task):
+    mixtral-8x7b            WM = 0.8910  (n = 28)
+    mixtral-8x22b           WM = 0.9162  (n = 28)
+    deepseek-v2-lite        WM = 0.8666  (n = 28)
+    deepseek-v2             WM = 0.9335  (n = 10)
+    qwen3-30b-a3b           WM = 0.8173  (n = 28)
+    qwen3-235b-a22b         WM = 0.9376  (n = 28)
+    olmoe                   WM = 0.7547  (n = 26)
+    phi-3.5-moe             WM = 0.8073  (n = 28)
+
+--- α = 0.5, Q = 0.99   (balanced) ---
+  Within-family same-task  (n= 24): mean = 0.9000, median = 0.9050, min = 0.8415, max = 0.9462
+  Cross-family same-task  (n=196): mean = 0.6256, median = 0.6758, min = 0.0747, max = 0.9097
+  Within-family − cross-family same-task gap: +0.2744
+
+  Global CMS (n=220) = 0.6555
+  Global CMD (n=1542) = 0.6230
+  CMS − CMD                       = +0.0325
+
+  Per-task CMS:
+    c4            CMS = 0.7437  (n = 28)
+    math          CMS = 0.6593  (n = 28)
+    code          CMS = 0.6179  (n = 27)
+    wikitext2     CMS = 0.6949  (n = 27)
+    gsm8k         CMS = 0.6317  (n = 27)
+    humaneval     CMS = 0.5436  (n = 27)
+    pile-arxiv    CMS = 0.6882  (n = 28)
+    pile-github   CMS = 0.6601  (n = 28)
+
+  Per-model WM (within-model cross-task):
+    mixtral-8x7b            WM = 0.8716  (n = 28)
+    mixtral-8x22b           WM = 0.9010  (n = 28)
+    deepseek-v2-lite        WM = 0.8509  (n = 28)
+    deepseek-v2             WM = 0.8956  (n = 10)
+    qwen3-30b-a3b           WM = 0.7941  (n = 28)
+    qwen3-235b-a22b         WM = 0.9163  (n = 28)
+    olmoe                   WM = 0.7285  (n = 26)
+    phi-3.5-moe             WM = 0.7828  (n = 28)
+
+--- α = 0.5, Q = 0.999   (balanced) ---
+  Within-family same-task  (n= 24): mean = 0.8239, median = 0.8388, min = 0.6512, max = 0.9503
+  Cross-family same-task  (n=196): mean = 0.4518, median = 0.4705, min = 0.0090, max = 0.8283
+  Within-family − cross-family same-task gap: +0.3721
+
+  Global CMS (n=220) = 0.4924
+  Global CMD (n=1542) = 0.4609
+  CMS − CMD                       = +0.0315
+
+  Per-task CMS:
+    c4            CMS = 0.6596  (n = 28)
+    math          CMS = 0.4905  (n = 28)
+    code          CMS = 0.4601  (n = 27)
+    wikitext2     CMS = 0.5536  (n = 27)
+    gsm8k         CMS = 0.4808  (n = 27)
+    humaneval     CMS = 0.3026  (n = 27)
+    pile-arxiv    CMS = 0.4923  (n = 28)
+    pile-github   CMS = 0.4935  (n = 28)
+
+  Per-model WM (within-model cross-task):
+    mixtral-8x7b            WM = 0.7414  (n = 28)
+    mixtral-8x22b           WM = 0.7788  (n = 28)
+    deepseek-v2-lite        WM = 0.7832  (n = 28)
+    deepseek-v2             WM = 0.8354  (n = 10)
+    qwen3-30b-a3b           WM = 0.7510  (n = 28)
+    qwen3-235b-a22b         WM = 0.7453  (n = 28)
+    olmoe                   WM = 0.5945  (n = 26)
+    phi-3.5-moe             WM = 0.7395  (n = 28)
+
+--- α = 1.0, Q = 0.9   (pure structure) ---
+  Within-family same-task  (n= 24): mean = 0.9664, median = 0.9605, min = 0.9402, max = 0.9898
+  Cross-family same-task  (n=196): mean = 0.9679, median = 0.9732, min = 0.9263, max = 0.9916
+  Within-family − cross-family same-task gap: -0.0015
+
+  Global CMS (n=220) = 0.9677
+  Global CMD (n=1542) = 0.9670
+  CMS − CMD                       = +0.0008
+
+  Per-task CMS:
+    c4            CMS = 0.9696  (n = 28)
+    math          CMS = 0.9735  (n = 28)
+    code          CMS = 0.9694  (n = 27)
+    wikitext2     CMS = 0.9691  (n = 27)
+    gsm8k         CMS = 0.9678  (n = 27)
+    humaneval     CMS = 0.9558  (n = 27)
+    pile-arxiv    CMS = 0.9685  (n = 28)
+    pile-github   CMS = 0.9679  (n = 28)
+
+  Per-model WM (within-model cross-task):
+    mixtral-8x7b            WM = 0.9902  (n = 28)
+    mixtral-8x22b           WM = 0.9931  (n = 28)
+    deepseek-v2-lite        WM = 0.9881  (n = 28)
+    deepseek-v2             WM = 0.9587  (n = 10)
+    qwen3-30b-a3b           WM = 0.9508  (n = 28)
+    qwen3-235b-a22b         WM = 0.9611  (n = 28)
+    olmoe                   WM = 0.9823  (n = 26)
+    phi-3.5-moe             WM = 0.9806  (n = 28)
+
+--- α = 1.0, Q = 0.99   (pure structure) ---
+  Within-family same-task  (n= 24): mean = 0.9362, median = 0.9180, min = 0.8970, max = 0.9830
+  Cross-family same-task  (n=196): mean = 0.9404, median = 0.9596, min = 0.8559, max = 0.9911
+  Within-family − cross-family same-task gap: -0.0041
+
+  Global CMS (n=220) = 0.9399
+  Global CMD (n=1542) = 0.9359
+  CMS − CMD                       = +0.0040
+
+  Per-task CMS:
+    c4            CMS = 0.9234  (n = 28)
+    math          CMS = 0.9250  (n = 28)
+    code          CMS = 0.9307  (n = 27)
+    wikitext2     CMS = 0.9395  (n = 27)
+    gsm8k         CMS = 0.9471  (n = 27)
+    humaneval     CMS = 0.9749  (n = 27)
+    pile-arxiv    CMS = 0.9433  (n = 28)
+    pile-github   CMS = 0.9366  (n = 28)
+
+  Per-model WM (within-model cross-task):
+    mixtral-8x7b            WM = 0.9850  (n = 28)
+    mixtral-8x22b           WM = 0.9834  (n = 28)
+    deepseek-v2-lite        WM = 0.9734  (n = 28)
+    deepseek-v2             WM = 0.8895  (n = 10)
+    qwen3-30b-a3b           WM = 0.9230  (n = 28)
+    qwen3-235b-a22b         WM = 0.9048  (n = 28)
+    olmoe                   WM = 0.9849  (n = 26)
+    phi-3.5-moe             WM = 0.9759  (n = 28)
+
+--- α = 1.0, Q = 0.999   (pure structure) ---
+  Within-family same-task  (n= 24): mean = 0.9531, median = 0.9743, min = 0.8481, max = 0.9988
+  Cross-family same-task  (n=196): mean = 0.9507, median = 0.9639, min = 0.8417, max = 0.9954
+  Within-family − cross-family same-task gap: +0.0024
+
+  Global CMS (n=220) = 0.9510
+  Global CMD (n=1542) = 0.9508
+  CMS − CMD                       = +0.0002
+
+  Per-task CMS:
+    c4            CMS = 0.9531  (n = 28)
+    math          CMS = 0.9509  (n = 28)
+    code          CMS = 0.9390  (n = 27)
+    wikitext2     CMS = 0.9677  (n = 27)
+    gsm8k         CMS = 0.9602  (n = 27)
+    humaneval     CMS = 0.9460  (n = 27)
+    pile-arxiv    CMS = 0.9511  (n = 28)
+    pile-github   CMS = 0.9403  (n = 28)
+
+  Per-model WM (within-model cross-task):
+    mixtral-8x7b            WM = 0.9578  (n = 28)
+    mixtral-8x22b           WM = 0.9663  (n = 28)
+    deepseek-v2-lite        WM = 0.9931  (n = 28)
+    deepseek-v2             WM = 0.9619  (n = 10)
+    qwen3-30b-a3b           WM = 0.9822  (n = 28)
+    qwen3-235b-a22b         WM = 0.9736  (n = 28)
+    olmoe                   WM = 0.9892  (n = 26)
+    phi-3.5-moe             WM = 0.9698  (n = 28)
+
+=== Within-family same-task table (α=0.0, Q=0.999) ===
+  family         | pair           | c4             | math           | code           | wikitext2      | gsm8k          | humaneval      | pile-arxiv     | pile-github    | mean          
+  --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+  Mixtral        | mixtra↔mixtra  | 0.6946         | 0.4811         | 0.5719         | 0.7912         | 0.5437         | 0.6743         | 0.5574         | 0.6001         | 0.6143        
+  DeepSeek       | deepse↔deepse  | 0.7952         | 0.6587         | 0.7296         | 0.7084         | 0.6741         | 0.4777         | 0.7533         | 0.6770         | 0.6843        
+  Qwen3          | qwen3-↔qwen3-  | 0.8970         | 0.9085         | 0.8382         | 0.8563         | 0.9077         | 0.7677         | 0.8507         | 0.8589         | 0.8606        
+
+=== α × Q landscape (global CMS, CMD, gap, within-fam, cross-fam) ===
+  α \ Q  ||  Q=0.9     Q=0.99    Q=0.999 
+  ------------------------------------------------------
+  α = 0.00
+    CMS         :   0.5265    0.5115    0.3205
+    CMD         :   0.4873    0.4689    0.2835
+    CMS-CMD gap :  +0.0392   +0.0427   +0.0370
+    within-fam  :   0.8655    0.8577    0.7197
+    cross-fam   :   0.4850    0.4692    0.2716
+
+  α = 0.50
+    CMS         :   0.6797    0.6555    0.4924
+    CMD         :   0.6486    0.6230    0.4609
+    CMS-CMD gap :  +0.0310   +0.0325   +0.0315
+    within-fam  :   0.9159    0.9000    0.8239
+    cross-fam   :   0.6507    0.6256    0.4518
+
+  α = 1.00
+    CMS         :   0.9677    0.9399    0.9510
+    CMD         :   0.9670    0.9359    0.9508
+    CMS-CMD gap :  +0.0008   +0.0040   +0.0002
+    within-fam  :   0.9664    0.9362    0.9531
+    cross-fam   :   0.9679    0.9404    0.9507
+
